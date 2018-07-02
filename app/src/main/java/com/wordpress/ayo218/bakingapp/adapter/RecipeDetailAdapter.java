@@ -62,13 +62,7 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             viewHolder.step_number.setText(String.valueOf(position));
             viewHolder.step_name.setText(recipes.getSteps().get(position).getShortDescription());
 
-            // TODO: 7/1/2018 Come back
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onItemClick( holder.getAdapterPosition());
-                }
-            });
+            holder.itemView.setOnClickListener(view -> listener.onItemClick( holder.getAdapterPosition()));
         }
     }
 

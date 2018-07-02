@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.wordpress.ayo218.bakingapp.model.Step;
-import com.wordpress.ayo218.bakingapp.ui.activity.RecipeDetailActivity;
 import com.wordpress.ayo218.bakingapp.ui.activity.RecipeStepsDetail;
 import com.wordpress.ayo218.bakingapp.ui.fragment.RecipeStepsFragment;
 
@@ -30,13 +29,15 @@ public class StepsPagerAdapter extends FragmentPagerAdapter {
         bundle.putParcelable(RecipeStepsDetail.STEP_SELECTED_KEY, steps.get(position));
         RecipeStepsFragment fragment = new RecipeStepsFragment();
         fragment.setArguments(bundle);
-        return null;
+
+        return fragment;
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return String.format("Step %d", position);
+        // TODO: 7/2/2018 FIx the title and Corressponding tab
+        return String.format("Step %d", position + 1);
     }
 
     @Override

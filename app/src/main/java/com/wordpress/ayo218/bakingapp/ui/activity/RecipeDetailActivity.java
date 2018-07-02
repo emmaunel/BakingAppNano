@@ -51,7 +51,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private void initView() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //set Adapter
         recyclerView.setAdapter(new RecipeDetailAdapter(recipes, new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {

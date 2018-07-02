@@ -44,28 +44,35 @@ public class RecipeStepsDetail extends AppCompatActivity {
            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-//        StepsPagerAdapter pagerAdapter = new StepsPagerAdapter(getApplicationContext(),
-//                recipes.getSteps(), getSupportFragmentManager());
-//        pager.setAdapter(pagerAdapter);
-//        tabLayout.setupWithViewPager(pager);
-//        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//                if (getSupportActionBar() != null){
-//                    getSupportActionBar().setTitle(recipes.getSteps().get(position).getShortDescription());
-//                }
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
-//        pager.setCurrentItem(selectedPosition);
+        StepsPagerAdapter pagerAdapter = new StepsPagerAdapter(getApplicationContext(),
+                recipes.getSteps(), getSupportFragmentManager());
+        pager.setAdapter(pagerAdapter);
+        tabLayout.setupWithViewPager(pager);
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (getSupportActionBar() != null){
+                    getSupportActionBar().setTitle(recipes.getSteps().get(position).getShortDescription());
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        pager.setCurrentItem(selectedPosition);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
