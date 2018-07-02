@@ -3,7 +3,6 @@ package com.wordpress.ayo218.bakingapp.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.wordpress.ayo218.bakingapp.R;
-import com.wordpress.ayo218.bakingapp.model.Ingredients;
+import com.wordpress.ayo218.bakingapp.listerner.OnItemClickListener;
 import com.wordpress.ayo218.bakingapp.model.Recipes;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,12 +23,13 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
 
     private static final String TAG = "RecipesAdapter";
     private Context context;
-    private ArrayList<Recipes> recipesList;
-    Recipes recipes;
+    private List<Recipes> recipesList;
+    private OnItemClickListener listener;
 
-    public RecipesAdapter(Context context, ArrayList<Recipes> recipesList) {
+    public RecipesAdapter(Context context, List<Recipes> recipesList, OnItemClickListener listener) {
         this.context = context;
         this.recipesList = recipesList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -45,9 +45,6 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         holder.recipe_name.setText(recipesList.get(position).getName());
         holder.recipe_serving.setText(context.getString(R.string.servings, recipesList.get(position).getServings()));
 
-        // FIXME: 6/30/2018
-//        Log.e(TAG, "onBindViewHolder: " + recipes.getMeasure());
-
         String recipes_img = recipesList.get(position).getImage();
         if (!recipes_img.isEmpty()){
             Picasso.get()
@@ -55,6 +52,12 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
                     .placeholder(R.drawable.ic_dinner)
                     .into(holder.recipe_img);
         }
+
+        holder.itemView.setOnClickListener(view -> {
+            if (listener != null){
+                listener.onItemClick(position);
+            }
+        });
     }
 
     @Override
