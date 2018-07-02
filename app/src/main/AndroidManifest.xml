@@ -19,11 +19,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.RecipeDetailActivity"
-            android:parentActivityName=".ui.activity.MainActivity">
+        <activity
+            android:name=".ui.activity.RecipeDetailActivity"
+            android:parentActivityName=".ui.activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.activity.MainActivity" />
+        </activity>
+
+        <activity android:name=".ui.activity.RecipeStepsDetail"
+            android:parentActivityName=".ui.activity.RecipeDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.activity.RecipeDetailActivity"/>
         </activity>
     </application>
 
