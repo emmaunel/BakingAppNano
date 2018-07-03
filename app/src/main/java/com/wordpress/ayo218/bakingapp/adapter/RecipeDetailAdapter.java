@@ -3,6 +3,7 @@ package com.wordpress.ayo218.bakingapp.adapter;
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +21,11 @@ import butterknife.ButterKnife;
 
 public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private static final String TAG = "RecipeDetailAdapter";
     private Recipes recipes;
     private OnItemClickListener listener;
+
+    private int posit = -1;
 
     public RecipeDetailAdapter(Recipes recipes, OnItemClickListener  listener) {
         this.recipes = recipes;
@@ -59,6 +63,9 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         } else if (holder instanceof StepsViewHolder){
             StepsViewHolder viewHolder = (StepsViewHolder) holder;
 
+            posit = position + 1;
+            Log.e(TAG, "onBindViewHolder: " + posit);
+            // FIXME: 7/2/2018
             viewHolder.step_number.setText(String.valueOf(position));
             viewHolder.step_name.setText(recipes.getSteps().get(position).getShortDescription());
 

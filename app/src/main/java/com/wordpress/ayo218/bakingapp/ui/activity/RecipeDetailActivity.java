@@ -12,6 +12,7 @@ import com.wordpress.ayo218.bakingapp.R;
 import com.wordpress.ayo218.bakingapp.adapter.RecipeDetailAdapter;
 import com.wordpress.ayo218.bakingapp.listerner.OnItemClickListener;
 import com.wordpress.ayo218.bakingapp.model.Recipes;
+import com.wordpress.ayo218.bakingapp.ui.fragment.RecipeStepsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +27,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     private Recipes recipes;
+    private boolean twoPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(recipes.getName());
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
+        
+        twoPane = getResources().getBoolean(R.bool.twoPaneMode);
+        if (twoPane){
+            if (savedInstanceState == null && !recipes.getSteps().isEmpty()) {
+                openStepDetail(0);
+            }
+        }
         initView();
     }
 
@@ -61,9 +69,22 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
 
     private void openStepDetail(int position) {
-        Intent intent = new Intent(this, RecipeStepsDetail.class);
-        intent.putExtra(RECIPE_KEY, recipes);
-        intent.putExtra(RecipeStepsDetail.STEP_SELECTED_KEY, position);
-        startActivity(intent);
+        // TODO: 7/2/2018 Work on this 
+        if (twoPane){
+            Bundle arguments = new Bundle();
+            arguments.putParcelable(RecipeStepsDetail.STEP_SELECTED_KEY, recipes.getSteps().get(position));
+            RecipeStepsFragment fragment = new RecipeStepsFragment();
+            fragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.recipe_step_detail_container, fragment)
+                    .commit();
+        } else {
+            Intent intent = new Intent(this, RecipeStepsDetail.class);
+            intent.putExtra(RECIPE_KEY, recipes);
+            intent.putExtra(RecipeStepsDetail.STEP_SELECTED_KEY, position);
+            startActivity(intent);
+        }
+        
+        
     }
 }

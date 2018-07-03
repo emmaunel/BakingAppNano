@@ -27,6 +27,7 @@ public class RecipeStepsDetail extends AppCompatActivity {
     private int selectedPosition;
 
     public static final String STEP_SELECTED_KEY = "step";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

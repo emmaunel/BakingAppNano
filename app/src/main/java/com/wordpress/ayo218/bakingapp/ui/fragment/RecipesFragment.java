@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -68,7 +69,13 @@ public class RecipesFragment extends Fragment {
 
     private void initView() {
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        // FIXME: 7/2/2018 ALso did this
+        boolean twoPane = getResources().getBoolean(R.bool.twoPaneMode);
+        if (twoPane){
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        } else{
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
         recyclerView.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener());
     }
 
