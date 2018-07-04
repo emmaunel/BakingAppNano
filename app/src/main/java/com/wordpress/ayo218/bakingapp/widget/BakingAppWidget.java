@@ -17,12 +17,12 @@ import com.wordpress.ayo218.bakingapp.ui.activity.MainActivity;
  */
 public class BakingAppWidget extends AppWidgetProvider {
 
-    public static final int REQUEST_CODE = 1;
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
         Recipes recipes = Prefs.loadRecipe(context);
         if (recipes != null) {
-            PendingIntent intent = PendingIntent.getActivity(context, REQUEST_CODE,
+            // TODO: 7/4/2018 Make each click go to each specific detail screen 
+            PendingIntent intent = PendingIntent.getActivity(context, 0,
                     new Intent(context, MainActivity.class), 0);
             // Construct the RemoteViews object
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.baking_app_widget);
@@ -33,9 +33,9 @@ public class BakingAppWidget extends AppWidgetProvider {
             Intent intent1 = new Intent(context, WidgetService.class);
             intent1.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 
-            views.setRemoteAdapter(R.id.recipe_step_list_widget, intent1);
+            views.setRemoteAdapter(R.id.recipe_step_list_view, intent1);
             appWidgetManager.updateAppWidget(appWidgetId, views);
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.recipe_step_list_widget);
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.recipe_step_list_view);
         }
     }
 

@@ -63,13 +63,10 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         } else if (holder instanceof StepsViewHolder){
             StepsViewHolder viewHolder = (StepsViewHolder) holder;
 
-            posit = position + 1;
-            Log.e(TAG, "onBindViewHolder: " + posit);
-            // FIXME: 7/2/2018
-            viewHolder.step_number.setText(String.valueOf(position));
-            viewHolder.step_name.setText(recipes.getSteps().get(position).getShortDescription());
+            viewHolder.step_number.setText(String.valueOf(holder.getAdapterPosition() - 1));
+            viewHolder.step_name.setText(recipes.getSteps().get(holder.getAdapterPosition() - 1).getShortDescription());
 
-            holder.itemView.setOnClickListener(view -> listener.onItemClick( holder.getAdapterPosition()));
+            holder.itemView.setOnClickListener(view -> listener.onItemClick( holder.getAdapterPosition() - 1));
         }
     }
 

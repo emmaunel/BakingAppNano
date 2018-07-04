@@ -3,32 +3,33 @@
     android:layout_height="match_parent"
     android:background="#09C"
     android:orientation="vertical"
+    android:layout_margin="@dimen/margin_medium"
     android:padding="@dimen/widget_margin">
 
-    <RelativeLayout
-        android:layout_margin="@dimen/margin_medium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <!--<RelativeLayout-->
+        <!--android:layout_margin="@dimen/margin_medium"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="25dp"
-            android:contentDescription="@string/left_arrow"
-            android:src="@drawable/ic_left_arrow" />
+        <!--<ImageView-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_marginStart="25dp"-->
+            <!--android:contentDescription="@string/left_arrow"-->
+            <!--android:src="@drawable/ic_left_arrow" />-->
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="25dp"
-            android:contentDescription="@string/right_arrow"
-            android:src="@drawable/ic_right_arrow" />
-    </RelativeLayout>
+        <!--<ImageView-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_marginEnd="25dp"-->
+            <!--android:contentDescription="@string/right_arrow"-->
+            <!--android:src="@drawable/ic_right_arrow" />-->
+    <!--</RelativeLayout>-->
 
     <TextView
         android:id="@+id/appwidget_text"
@@ -42,7 +43,7 @@
         android:textSize="@dimen/text_large" />
 
     <ListView
-        android:id="@+id/recipe_step_list_widget"
+        android:id="@+id/recipe_step_list_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
