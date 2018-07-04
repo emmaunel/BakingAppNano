@@ -2,13 +2,20 @@ package com.wordpress.ayo218.bakingapp.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Base64;
+import android.util.Log;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Recipes implements Parcelable{
+    private static final String TAG = "Recipes";
+
     @JsonProperty("id")
     private int id;
     @JsonProperty("name")
@@ -93,6 +100,28 @@ public class Recipes implements Parcelable{
         parcel.writeString(this.image);
         parcel.writeList(this.ingredients);
         parcel.writeList(this.steps);
+    }
+
+    public static String StringBase64(Recipes recipes) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return Base64.encodeToString(mapper.writeValueAsBytes(recipes), 0);
+        } catch (JsonProcessingException e) {
+            Log.e(TAG, "StringBase64: "+ e.getMessage());
+        }
+        return null;
+    }
+
+    public static Recipes fromBase64(String encoded) {
+        if (!"".equals(encoded)) {
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                return mapper.readValue(Base64.decode(encoded, 0), Recipes.class);
+            } catch (IOException e) {
+                Log.e(TAG, "fromBase64: " + e.getMessage());
+            }
+        }
+        return null;
     }
 
 

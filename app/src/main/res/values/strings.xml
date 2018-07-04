@@ -2,4 +2,6 @@
     <string name="app_name">BakingApp</string>
 
     <string name="servings">Servings: %d</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

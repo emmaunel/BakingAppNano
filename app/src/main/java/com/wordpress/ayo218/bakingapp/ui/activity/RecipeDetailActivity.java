@@ -7,8 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.wordpress.ayo218.bakingapp.R;
+import com.wordpress.ayo218.bakingapp.widget.WidgetService;
 import com.wordpress.ayo218.bakingapp.adapter.RecipeDetailAdapter;
 import com.wordpress.ayo218.bakingapp.listerner.OnItemClickListener;
 import com.wordpress.ayo218.bakingapp.model.Recipes;
@@ -69,7 +72,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
 
     private void openStepDetail(int position) {
-        // TODO: 7/2/2018 Work on this 
         if (twoPane){
             Bundle arguments = new Bundle();
             arguments.putParcelable(RecipeStepsDetail.STEP_SELECTED_KEY, recipes.getSteps().get(position));
@@ -86,5 +88,24 @@ public class RecipeDetailActivity extends AppCompatActivity {
         }
         
         
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater()
+                .inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.add_widget) {
+            // TODO: 7/3/2018 Create a service
+            WidgetService.addWidget(this, recipes);
+            Snackbar.make(getCurrentFocus(), "ADDED TO HOMESCREEN", Snackbar.LENGTH_LONG).show();
+            return true;
+        } else{
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
