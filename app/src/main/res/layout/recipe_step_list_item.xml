@@ -4,28 +4,22 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardElevation="2dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:layout_margin="4dp"
-    app:cardCornerRadius="4dp"
-    android:foreground="?android:attr/selectableItemBackground">
+    style="@style/recipe_step_cardView">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:padding="@dimen/margin_medium">
 
         <TextView
             android:id="@+id/steps_number"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:textAppearance="?attr/textAppearanceListItem"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_large"
             tools:text="0.0" />
 
         <TextView
@@ -46,7 +40,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
-            android:contentDescription="Start Button"
+            android:contentDescription="@string/next_button"
             app:srcCompat="@drawable/ic_right_arrow" />
     </RelativeLayout>
 

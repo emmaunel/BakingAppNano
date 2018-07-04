@@ -28,6 +28,8 @@ import com.wordpress.ayo218.bakingapp.R;
 import com.wordpress.ayo218.bakingapp.model.Step;
 import com.wordpress.ayo218.bakingapp.ui.activity.RecipeStepsDetail;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -86,7 +88,7 @@ public class RecipeStepsFragment extends Fragment {
             playerView.setPlayer(player);
 
             String userAgent = Util.getUserAgent(getContext(), getString(R.string.app_name));
-            MediaSource mediaSource = new ExtractorMediaSource(uri, new DefaultDataSourceFactory(getContext(), userAgent),
+            MediaSource mediaSource = new ExtractorMediaSource(uri, new DefaultDataSourceFactory(Objects.requireNonNull(getContext()), userAgent),
                     new DefaultExtractorsFactory(), null, null);
             player.prepare(mediaSource);
 
@@ -104,8 +106,10 @@ public class RecipeStepsFragment extends Fragment {
             readyToPlay = player.getPlayWhenReady();
         }
 
-        player.stop();
-        player.release();
+        if (player != null) {
+            player.stop();
+            player.release();
+        }
         player = null;
     }
 

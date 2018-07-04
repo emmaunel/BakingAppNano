@@ -6,7 +6,7 @@
     android:padding="@dimen/widget_margin">
 
     <RelativeLayout
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/margin_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -17,7 +17,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
-            android:src="@drawable/ic_right_arrow" />
+            android:contentDescription="@string/left_arrow"
+            android:src="@drawable/ic_left_arrow" />
 
         <ImageView
             android:layout_width="30dp"
@@ -25,6 +26,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="25dp"
+            android:contentDescription="@string/right_arrow"
             android:src="@drawable/ic_right_arrow" />
     </RelativeLayout>
 
@@ -34,10 +36,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="#09C"
-        android:text="Recipe Name"
+        android:text="@string/recipe_name"
         android:textAllCaps="true"
         android:textColor="#ffffff"
-        android:textSize="24sp" />
+        android:textSize="@dimen/text_large" />
 
     <ListView
         android:id="@+id/recipe_step_list_widget"

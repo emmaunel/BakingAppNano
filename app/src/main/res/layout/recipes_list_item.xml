@@ -5,13 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:cardElevation="2dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
+        style="@style/recipe_list_item_CardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,12 +21,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:contentDescription="@string/recipe_logo"
                 app:srcCompat="@drawable/ic_dinner" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/recipes_img"
+                android:layout_toEndOf="@id/recipes_img"
                 android:orientation="vertical"
                 android:padding="8dp">
 
@@ -40,14 +35,14 @@
                     android:id="@+id/recipes_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_large"
                     tools:text="Recipe Name" />
 
                 <TextView
                     android:id="@+id/recipes_servings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/text_medium"
                     tools:text="Servings: 8" />
             </LinearLayout>
         </RelativeLayout>

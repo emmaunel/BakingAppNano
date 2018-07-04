@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:text="Stuff"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/margin_medium"
+        android:text="@string/ingredient_name"
         android:layout_gravity="center_vertical"/>
 
 </LinearLayout>

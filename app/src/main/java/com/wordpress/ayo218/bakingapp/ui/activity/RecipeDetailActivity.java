@@ -11,11 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.wordpress.ayo218.bakingapp.R;
-import com.wordpress.ayo218.bakingapp.widget.WidgetService;
 import com.wordpress.ayo218.bakingapp.adapter.RecipeDetailAdapter;
-import com.wordpress.ayo218.bakingapp.listerner.OnItemClickListener;
 import com.wordpress.ayo218.bakingapp.model.Recipes;
 import com.wordpress.ayo218.bakingapp.ui.fragment.RecipeStepsFragment;
+import com.wordpress.ayo218.bakingapp.widget.WidgetService;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,7 +42,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(RECIPE_KEY)){
             recipes = getIntent().getExtras().getParcelable(RECIPE_KEY);
         } else {
-            Snackbar.make(getCurrentFocus(), "NO DATA AVAILABLE AT THE MOMENT", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(Objects.requireNonNull(getCurrentFocus()), getResources().getText(R.string.noData), Snackbar.LENGTH_LONG).show();
         }
 
         setSupportActionBar(toolbar);
@@ -62,12 +63,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private void initView() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecipeDetailAdapter(recipes, new OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                openStepDetail(position);
-            }
-        }));
+        recyclerView.setAdapter(new RecipeDetailAdapter(recipes, this::openStepDetail));
     }
 
 
@@ -100,9 +96,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.add_widget) {
-            // TODO: 7/3/2018 Create a service
             WidgetService.addWidget(this, recipes);
-            Snackbar.make(getCurrentFocus(), "ADDED TO HOMESCREEN", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(Objects.requireNonNull(getCurrentFocus()), getResources().getText(R.string.addedHomeScreen), Snackbar.LENGTH_LONG).show();
             return true;
         } else{
             return super.onOptionsItemSelected(item);

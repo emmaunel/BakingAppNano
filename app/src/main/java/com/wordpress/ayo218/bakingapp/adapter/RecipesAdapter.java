@@ -21,7 +21,6 @@ import butterknife.ButterKnife;
 
 public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHolder> {
 
-    private static final String TAG = "RecipesAdapter";
     private Context context;
     private List<Recipes> recipesList;
     private OnItemClickListener listener;
@@ -73,7 +72,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         @BindView(R.id.recipes_servings)
         TextView recipe_serving;
 
-        public ViewHolder(View itemView) {
+        private ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
