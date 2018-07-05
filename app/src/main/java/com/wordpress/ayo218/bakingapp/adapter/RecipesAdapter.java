@@ -3,6 +3,7 @@ package com.wordpress.ayo218.bakingapp.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         holder.recipe_serving.setText(context.getString(R.string.servings, recipesList.get(position).getServings()));
 
         String recipes_img = recipesList.get(position).getImage();
-        if (!recipes_img.isEmpty()){
+        if (!TextUtils.isEmpty(recipesList.get(position).getImage())){
             Picasso.get()
                     .load(recipesList.get(position).getImage())
                     .placeholder(R.drawable.ic_dinner)

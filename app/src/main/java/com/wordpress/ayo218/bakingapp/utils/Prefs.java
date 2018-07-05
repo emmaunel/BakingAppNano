@@ -7,7 +7,7 @@ import com.wordpress.ayo218.bakingapp.R;
 import com.wordpress.ayo218.bakingapp.model.Recipes;
 
 public class Prefs {
-    private static final String PREF = "prefs";
+    public static final String PREF = "prefs";
 
     public static void addRecipe(Context context, Recipes recipes) {
         SharedPreferences.Editor preferences = context.getSharedPreferences(PREF, Context.MODE_PRIVATE).edit();

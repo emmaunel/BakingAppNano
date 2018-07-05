@@ -1,5 +1,7 @@
 package com.wordpress.ayo218.bakingapp.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
@@ -12,10 +14,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity(tableName = "Recipes")
 public class Recipes implements Parcelable{
     private static final String TAG = "Recipes";
-
+    @PrimaryKey
     @JsonProperty("id")
     private int id;
     @JsonProperty("name")
@@ -29,6 +31,7 @@ public class Recipes implements Parcelable{
     @JsonProperty("steps")
     private List<Step> steps;
 
+    // TODO: 7/5/2018 Create a type converter for the list
 
     public Recipes() {
         this.image = "";
@@ -85,6 +88,30 @@ public class Recipes implements Parcelable{
 
     public List<Step> getSteps() {
         return steps;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setServings(int servings) {
+        this.servings = servings;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setIngredients(List<Ingredients> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public void setSteps(List<Step> steps) {
+        this.steps = steps;
     }
 
     @Override

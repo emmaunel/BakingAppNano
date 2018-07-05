@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wordpress.ayo218.bakingapp.BaseApplication;
 import com.wordpress.ayo218.bakingapp.R;
 import com.wordpress.ayo218.bakingapp.adapter.RecipesAdapter;
 import com.wordpress.ayo218.bakingapp.api.RecipesApiCallback;
@@ -41,6 +42,8 @@ public class RecipesFragment extends Fragment {
 
     private List<Recipes> recipesList;
 
+    private BaseApplication baseApplication;
+
     private BroadcastReceiver networkChange = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -62,7 +65,8 @@ public class RecipesFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         refreshLayout.setOnRefreshListener(this::loadRecipes);
-
+        baseApplication = (BaseApplication)getActivity().getApplicationContext();
+        baseApplication.setIdleState(false);
         initView();
         return view;
     }
@@ -93,6 +97,8 @@ public class RecipesFragment extends Fragment {
                             intent.putExtra(RecipeDetailActivity.RECIPE_KEY, recipesList.get(position));
                             startActivity(intent);
                         }));
+                        // FIXME: 7/5/2018 Come back
+                        baseApplication.setIdleState(false);
                     }
                 }
 

@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -24,6 +25,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.squareup.picasso.Picasso;
 import com.wordpress.ayo218.bakingapp.R;
 import com.wordpress.ayo218.bakingapp.model.Step;
 import com.wordpress.ayo218.bakingapp.ui.activity.RecipeStepsDetail;
@@ -35,6 +37,8 @@ import butterknife.ButterKnife;
 
 public class RecipeStepsFragment extends Fragment {
 
+    @BindView(R.id.step_thumbnail_image)
+    ImageView thumbnail;
     @BindView(R.id.instruction_text)
     TextView mTvInstructions;
     @BindView(R.id.exoplayer_view)
@@ -76,6 +80,15 @@ public class RecipeStepsFragment extends Fragment {
         }
         mTvInstructions.setText(step.getDescription());
         initializePlayer(Uri.parse(step.getVideoURL()));
+
+        if(!step.getThumbnailURL().isEmpty()){
+            Picasso.get()
+                    .load(step.getThumbnailURL())
+                    .placeholder(R.drawable.ic_dinner)
+                    .into(thumbnail);
+
+            thumbnail.setVisibility(View.VISIBLE);
+        }
 
         return view;
     }

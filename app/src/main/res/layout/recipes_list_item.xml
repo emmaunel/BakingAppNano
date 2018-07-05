@@ -20,7 +20,7 @@
                 android:id="@+id/recipes_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
+                android:padding="@dimen/margin_medium"
                 android:contentDescription="@string/recipe_logo"
                 app:srcCompat="@drawable/ic_dinner" />
 
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/recipes_img"
                 android:orientation="vertical"
-                android:padding="8dp">
+                android:padding="@dimen/margin_medium">
 
                 <TextView
                     android:id="@+id/recipes_name"

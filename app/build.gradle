@@ -33,6 +33,14 @@ dependencies {
     implementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
+    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:3.0.1'){
+
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+    }
 
     //design
     implementation 'com.android.support:design:27.1.1'
@@ -61,4 +69,11 @@ dependencies {
 
     // ExoPlayer
     implementation 'com.google.android.exoplayer:exoplayer:r2.2.0'
+
+    //Room(Database)
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+
+    //Debug database
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.3'
 }

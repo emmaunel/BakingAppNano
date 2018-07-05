@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.wordpress.ayo218.bakingapp.AppDatabase;
 import com.wordpress.ayo218.bakingapp.R;
 import com.wordpress.ayo218.bakingapp.adapter.RecipeDetailAdapter;
 import com.wordpress.ayo218.bakingapp.model.Recipes;
@@ -33,11 +34,15 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private Recipes recipes;
     private boolean twoPane;
 
+    private AppDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
         ButterKnife.bind(this);
+
+        database = AppDatabase.getsInstance(getApplicationContext());
 
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(RECIPE_KEY)){
             recipes = getIntent().getExtras().getParcelable(RECIPE_KEY);
@@ -96,6 +101,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.add_widget) {
+            database.favoriteDao().insertRecipe(recipes);
             WidgetService.addWidget(this, recipes);
             Snackbar.make(Objects.requireNonNull(getCurrentFocus()), getResources().getText(R.string.addedHomeScreen), Snackbar.LENGTH_LONG).show();
             return true;
