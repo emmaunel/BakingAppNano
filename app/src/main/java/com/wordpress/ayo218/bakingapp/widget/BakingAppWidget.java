@@ -18,17 +18,22 @@ import com.wordpress.ayo218.bakingapp.ui.activity.MainActivity;
 public class BakingAppWidget extends AppWidgetProvider {
 
     public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
-
+        RemoteViews views;
         Recipes recipes = Prefs.loadRecipe(context);
         if (recipes != null) {
             // TODO: 7/4/2018 Make each click go to each specific detail screen 
+            // TODO: 7/6/2018 Learn how to use the button in widget 
             PendingIntent intent = PendingIntent.getActivity(context, 0,
                     new Intent(context, MainActivity.class), 0);
             // Construct the RemoteViews object
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.baking_app_widget);
+            views = new RemoteViews(context.getPackageName(), R.layout.baking_app_widget);
             views.setTextViewText(R.id.appwidget_text, recipes.getName());
 
             views.setOnClickPendingIntent(R.id.appwidget_text, intent);
+
+            //Button click
+//            PendingIntent previous_intent = PendingIntent.getActivity(context, 1, )
+//            views.setOnClickPendingIntent(R.id.previous_button, previous_intent);
 
             Intent intent1 = new Intent(context, WidgetService.class);
             intent1.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);

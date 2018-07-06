@@ -14,10 +14,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-@Entity(tableName = "Recipes")
 public class Recipes implements Parcelable{
     private static final String TAG = "Recipes";
-    @PrimaryKey
+
     @JsonProperty("id")
     private int id;
     @JsonProperty("name")
